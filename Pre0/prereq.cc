@@ -25,7 +25,7 @@ Result calculate(int ny, int nx, const float *data, int y0, int x0, int y1, int 
     }
     unsigned total = (y1 - y0) * (x1 - x0);
     for (int i = 0; i < 3; i++) {
-        result.avg[i] = (float)rgb[i];
+        result.avg[i] = (float)rgb[i] / total;
     }
     return result;
 }
