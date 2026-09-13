@@ -14,5 +14,18 @@ This is the function you need to implement. Quick reference:
 */
 Result calculate(int ny, int nx, const float *data, int y0, int x0, int y1, int x1) {
     Result result{{0.0f, 0.0f, 0.0f}};
+    double rgb[3] = {0};
+    for (int y = y0; y < y1; y++) {
+        for (int x = x0; x < x1; x++) {
+            const float* base = &data[3 * x + 3 * nx * y];
+            for (int c = 0; c < 3; c++) {
+                rgb[c] += (double)base[c];
+            }
+        }
+    }
+    unsigned total = (y1 - y0) * (x1 - x0);
+    for (int i = 0; i < 3; i++) {
+        result.avg[i] = (float)rgb[i];
+    }
     return result;
 }
